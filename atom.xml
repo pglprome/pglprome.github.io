@@ -5,9 +5,9 @@
   <subtitle>Amadeus</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://godweiyang.com/"/>
+  <link href="https://pglprome.eu.org/"/>
   <updated>2019-11-18T02:14:52.068Z</updated>
-  <id>https://godweiyang.com/</id>
+  <id>https://pglprome.eu.org/</id>
   
   <author>
     <name>pglprome</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Test the first blog</title>
-    <link href="https://godweiyang.com/2019/11/18/article-title/"/>
-    <id>https://godweiyang.com/2019/11/18/article-title/</id>
+    <link href="https://pglprome.eu.org/2019/11/18/article-title/"/>
+    <id>https://pglprome.eu.org/2019/11/18/article-title/</id>
     <published>2019-11-18T02:13:21.000Z</published>
     <updated>2019-11-18T02:14:52.068Z</updated>
     
@@ -28,14 +28,14 @@
     </summary>
     
     
-      <category term="xxx" scheme="https://godweiyang.com/tags/xxx/"/>
+      <category term="xxx" scheme="https://pglprome.eu.org/tags/xxx/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://godweiyang.com/2019/11/18/hello-world/"/>
-    <id>https://godweiyang.com/2019/11/18/hello-world/</id>
+    <link href="https://pglprome.eu.org/2019/11/18/hello-world/"/>
+    <id>https://pglprome.eu.org/2019/11/18/hello-world/</id>
     <published>2019-11-18T01:59:03.092Z</published>
     <updated>2019-11-18T01:59:03.092Z</updated>
     
