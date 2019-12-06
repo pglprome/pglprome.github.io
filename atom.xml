@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pglprome.eu.org/"/>
-  <updated>2019-11-18T02:14:52.068Z</updated>
+  <updated>2019-12-06T13:26:11.308Z</updated>
   <id>https://pglprome.eu.org/</id>
   
   <author>
@@ -17,27 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Test the first blog</title>
-    <link href="https://pglprome.eu.org/2019/11/18/article-title/"/>
-    <id>https://pglprome.eu.org/2019/11/18/article-title/</id>
-    <published>2019-11-18T02:13:21.000Z</published>
-    <updated>2019-11-18T02:14:52.068Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="xxx" scheme="https://pglprome.eu.org/tags/xxx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://pglprome.eu.org/2019/11/18/hello-world/"/>
-    <id>https://pglprome.eu.org/2019/11/18/hello-world/</id>
-    <published>2019-11-18T01:59:03.092Z</published>
-    <updated>2019-11-18T01:59:03.092Z</updated>
+    <title>小站伊始</title>
+    <link href="https://pglprome.eu.org/2019/12/06/xiao-zhan-yi-shi/"/>
+    <id>https://pglprome.eu.org/2019/12/06/xiao-zhan-yi-shi/</id>
+    <published>2019-12-06T12:52:52.000Z</published>
+    <updated>2019-12-06T13:26:11.308Z</updated>
     
     <summary type="html">
     
@@ -45,12 +29,16 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;h1 id=&quot;建站之初&quot;&gt;&lt;a href=&quot;#建站之初&quot; class=&quot;headerlink&quot; title=&quot;建站之初&quot;&gt;&lt;/a&gt;建站之初&lt;/h1&gt;&lt;p&gt;因为想要记录一些自己学过的东西和折腾的经历，故学着大佬们利用GitHub
         
       
     
     </summary>
     
+      <category term="随笔" scheme="https://pglprome.eu.org/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://pglprome.eu.org/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
