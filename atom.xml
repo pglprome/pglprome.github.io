@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pglprome.eu.org/"/>
-  <updated>2019-12-06T13:45:59.189Z</updated>
+  <updated>2019-12-07T14:14:41.204Z</updated>
   <id>https://pglprome.eu.org/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ssh断开后，程序如何继续在服务器后台运行</title>
+    <link href="https://pglprome.eu.org/2019/12/07/ssh-duan-kai-hou-cheng-xu-ru-he-ji-xu-zai-fu-wu-qi-hou-tai-yun-xing/"/>
+    <id>https://pglprome.eu.org/2019/12/07/ssh-duan-kai-hou-cheng-xu-ru-he-ji-xu-zai-fu-wu-qi-hou-tai-yun-xing/</id>
+    <published>2019-12-07T13:49:31.000Z</published>
+    <updated>2019-12-07T14:14:41.204Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这两天在服务器上跑程序，因为实验室有人在服务器上跑了Gnome，我只能用ssh连接在上面跑程序。因为程序跑的时间比较久，中间ssh在闲置一段时间后会自动断开（ssh没有心跳检测），ssh断开后我们在服务器上跑的程序也就会停止，这就产生了困扰。&lt;/p&gt;
+&lt;p&gt;简单在Googl
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://pglprome.eu.org/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://pglprome.eu.org/tags/Linux/"/>
+    
+      <category term="服务器" scheme="https://pglprome.eu.org/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="shell命令" scheme="https://pglprome.eu.org/tags/shell%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>小站伊始</title>
