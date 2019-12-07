@@ -5,8 +5,8 @@
     
     <entry>
       <title>ssh断开后，程序如何继续在服务器后台运行</title>
-      <link href="/2019/12/07/ssh-duan-kai-hou-cheng-xu-ru-he-ji-xu-zai-fu-wu-qi-hou-tai-yun-xing/"/>
-      <url>/2019/12/07/ssh-duan-kai-hou-cheng-xu-ru-he-ji-xu-zai-fu-wu-qi-hou-tai-yun-xing/</url>
+      <link href="/2019/12/07/how-to-run-background/"/>
+      <url>/2019/12/07/how-to-run-background/</url>
       
         <content type="html"><![CDATA[<p>这两天在服务器上跑程序，因为实验室有人在服务器上跑了Gnome，我只能用ssh连接在上面跑程序。因为程序跑的时间比较久，中间ssh在闲置一段时间后会自动断开（ssh没有心跳检测），ssh断开后我们在服务器上跑的程序也就会停止，这就产生了困扰。</p><p>简单在Google搜了下，解决方法有以下三种</p><ol><li><strong>nohup指令</strong></li><li><strong>screen指令</strong></li><li><strong>byobu指令</strong></li></ol><p>其中，nohun指令是大多数Linux发行版自带的，不用刻意安装，screen会在当前命令行界面再开一个窗口，我们可以在任何命令行界面打开这个窗口，这样，当前命令行关闭后，我们运行的程序也就不会被动关闭。byobu是screen的升级版（网上是这样说的）</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul><li>通过对几个命令的实验，我感觉<strong>byobu是最好用</strong>也是最方便的，下面简单介绍一下。</li></ul><p>首先，我们要安装byobu，红帽系用yum安装，debian用apt get，因为我的服务器是ubuntu，故我采用的命令是</p><pre><code>sudo apt install byobu</code></pre><p>安装好byobu后，我们在命令行输入就能打开byobu，如图<br><img src="1.jpg" alt></p><h3 id="byobu的基本简单操作"><a href="#byobu的基本简单操作" class="headerlink" title="byobu的基本简单操作"></a>byobu的基本简单操作</h3><table><thead><tr><th>按键</th><th align="center">说明</th></tr></thead><tbody><tr><td>F2</td><td align="center">新建窗口</td></tr><tr><td>F3</td><td align="center">移动到前一个窗口</td></tr><tr><td>F6</td><td align="center">退出byobu窗口</td></tr><tr><td>F9</td><td align="center">打开byobu菜单，查看帮助信息的配置信息</td></tr><tr><td>Ctrl+D</td><td align="center">关闭当前窗口</td></tr></tbody></table><p>如果我们想要一登陆就显示byobu界面的话，可以使用命令</p><pre><code>byobu-enable</code></pre><p>关闭使用的命令是</p><pre><code>byobu-disable</code></pre>]]></content>
       
