@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pglprome.eu.org/"/>
-  <updated>2019-12-07T14:32:44.616Z</updated>
+  <updated>2020-08-05T13:50:06.066Z</updated>
   <id>https://pglprome.eu.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将CAJ文档转换成带书签的PDF</title>
+    <link href="https://pglprome.eu.org/2020/08/05/cajtopdf/"/>
+    <id>https://pglprome.eu.org/2020/08/05/cajtopdf/</id>
+    <published>2020-08-05T13:06:03.000Z</published>
+    <updated>2020-08-05T13:50:06.066Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;刚入门的科研工作者经常会阅读知网上的硕博论文，尤其是文科的童鞋们，理工科也可以从优秀的硕博中了解本行业的基础知识。&lt;br&gt;但是知网的CAJ非常难用（就是LJ），pdf版本下载下来没有书签，故在此提供一个简单的方案，非常easy和快速，熟练的话也就一两分钟。&lt;/p&gt;
+&lt;p&gt;首
+        
+      
+    
+    </summary>
+    
+      <category term="科研工具" scheme="https://pglprome.eu.org/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="科研工具" scheme="https://pglprome.eu.org/tags/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>ssh断开后，程序如何继续在服务器后台运行</title>
