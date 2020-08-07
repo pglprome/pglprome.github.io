@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>STL list容器 .size()返回数值错误</title>
+      <link href="/2020/08/07/stlsizeerror/"/>
+      <url>/2020/08/07/stlsizeerror/</url>
+      
+        <content type="html"><![CDATA[<p>前两天写缓存代码时，遇见了一个我认为是STL的bug，如图所示，t2_clean是我定义的一个std::list对象，通过IDE我们可以看到此时该容器中有两个节点，分别对应的下标是0和1，此时我们调用.size（）方法，理应获得的值是2，但这里获得的值是-1，通过多次调试，每次返回值是不同的，但总之是，.size（）返回的值和容器中真实的节点个数不匹配。<br><img src="https://pic.downk.cc/item/5f2ccafd14195aa594c30ea0.png" alt></p><p>通过一系列的Debug，找到了问题，其原因是splice函数，在我的项目代码中写了这样的一个语句，</p><pre><code>t2.splice(t2.begin(), t2_clean, it2-&gt;list_ptr);</code></pre><p>其中，t2和t2_clean一样也是std::list容器对象，splice函数的功能是将某个list对象（t2_clean）节点移动至另一个list对象（t2）的指定位置，其三个参数的意义分别是：</p><ol><li>指向调用splice函数list对象中某个节点的迭代器（t2.begin（）），将另一个对象插入到该迭代器前一个位置，在本语句中表示会将t2_clean对象的某个元素插入到t2的头节点前的一个位置。</li><li>和3 表示想要移动的list对象t2_clean）以及指向该对象某个元素的迭代器（it2-&gt;list_ptr）</li></ol><p>splice函数如果遇见t2_clean是空的，此时继续执行splice函数会怎样？没错，该意外操作并不会报错，需要程序员自己控制该意外情况不发生，继续执行会导致t2的节点+1以及t2_clean的节点数目-1，但并不会真的有节点插入t2,此时对t2和t2_clean调用.size（）方法会发现，t2的size比实际它所存储的节点数目多1，而t2_clean的size比实际它所存储的节点数目少1。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> STL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>将CAJ文档转换成带书签的PDF</title>
       <link href="/2020/08/05/cajtopdf/"/>
       <url>/2020/08/05/cajtopdf/</url>

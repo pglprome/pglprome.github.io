@@ -4,11 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="小站伊始, SSD Edge Computing MQsim Disksim Cache">
+    <meta name="keywords" content="STL list容器 .size()返回数值错误, SSD Edge Computing MQsim Disksim Cache">
     <meta name="baidu-site-verification" content="8y0kCodpFk">
     <meta name="google-site-verification" content="8y0kCodpFk">
     <meta name="360-site-verification" content>
-    <meta name="description" content="建站之初因为想要记录一些自己学过的东西和折腾的经历，故学着大佬们利用GitHub Pages来搭建一个自己的小博客。起初也是因为我通过别人的博客获得了一些帮助（如通过陈浩的博客获取了一些在disksim和flash sim使用上的帮助）故也">
+    <meta name="description" content="前两天写缓存代码时，遇见了一个我认为是STL的bug，如图所示，t2_clean是我定义的一个std::list对象，通过IDE我们可以看到此时该容器中有两个节点，分别对应的下标是0和1，此时我们调用.size（）方法，理应获得的值是2，但">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>小站伊始 | pglprome的小站</title>
+    <title>STL list容器 .size()返回数值错误 | pglprome的小站</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -290,13 +290,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        小站伊始
+                        STL list容器 .size()返回数值错误
                     </div>
                 </div>
             </div>
@@ -407,8 +407,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/随笔/" target="_blank">
-                            <span class="chip bg-color">随笔</span>
+                        <a href="/tags/C/" target="_blank">
+                            <span class="chip bg-color">C++</span>
+                        </a>
+                        
+                        <a href="/tags/STL/" target="_blank">
+                            <span class="chip bg-color">STL</span>
                         </a>
                         
                     </div>
@@ -419,8 +423,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/随笔/" class="post-category" target="_blank">
-                            随笔
+                        <a href="/categories/C/" class="post-category" target="_blank">
+                            C++
                         </a>
                         
                     </div>
@@ -431,7 +435,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-06
+                    2020-08-07
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -445,14 +449,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    582
+                    452
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
                 
@@ -468,24 +472,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="建站之初"><a href="#建站之初" class="headerlink" title="建站之初"></a>建站之初</h1><p>因为想要记录一些自己学过的东西和折腾的经历，故学着大佬们利用GitHub Pages来搭建一个自己的小博客。起初也是因为我通过别人的博客获得了一些帮助（如通过<a href="http://cighao.com" target="_blank" rel="noopener">陈浩的博客</a>获取了一些在disksim和flash sim使用上的帮助）故也希望自己折腾的一些经历能够帮助别人。</p>
-<h2 id="博客计划分享的内容"><a href="#博客计划分享的内容" class="headerlink" title="博客计划分享的内容"></a>博客计划分享的内容</h2><ul>
-<li><p><strong>研究内容</strong></p>
-<p>我目前正在读CS体系结构的master’s degree，研究方向是NAND Flash存储系统和 KV存储系统优化，可能会分享一些这个研究方向的内容以及开源代码，比如MQsim的代码，我的部分实验时基于这个SSD模拟器做的，其实CMU 2018年发布在Fast上的论文，并在GitHub上开源，可以说是目前最先进的SSD模拟器，其代码量相对较大，且参考资料不多，中文资料截止目前网上还一点没有，我可能会在之后分享一些相关资料。其它的比如 Leveldb，ms ssdmodel等，网上已经有不少相关资料，我也可能会分享一些自己的理解。</p>
-</li>
-<li><p><strong>算法，数据结构，Coding中的问题等</strong></p>
-<p>在写代码的过程中，经常会遇见一些好的idea，有趣的算法或者debug时遇见一些难解决的问等。我可能会记录下来，一是为了帮助自己整理和记忆，其次是希望能帮到其他遇见这个问题的人。</p>
-</li>
-<li><p><strong>数码产品的折腾，NAS，路由等</strong></p>
-<p>我本身喜欢捣鼓一些电子产品，一个是能够改善某些使用体验，使其个性化，其次是我也享受实现功能（折腾）的过程，我目前个人买了一台群晖DS918+，可能会分享Nas,路由，安卓，树莓派，服务器以及一些智能家居的折腾经历。</p>
-</li>
-</ul>
-<p><img src="1.jpg" alt></p>
-<h2 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h2><p>本博客使用的是Hexo框架，并采用<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">hexo-theme-matery主题</a>，目前搭建在GitHub Pages上面，原本计划搭建在国内的平台上，如Coding和码云，不过都有限制，Coding有单个仓库不大于100MB的限制，码云有不能修改域名的限制，故最后还是选择GitHub了</p>
-<div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=4970212&auto=1&height=66"></iframe></div>
-
-
-
+                <p>前两天写缓存代码时，遇见了一个我认为是STL的bug，如图所示，t2_clean是我定义的一个std::list对象，通过IDE我们可以看到此时该容器中有两个节点，分别对应的下标是0和1，此时我们调用.size（）方法，理应获得的值是2，但这里获得的值是-1，通过多次调试，每次返回值是不同的，但总之是，.size（）返回的值和容器中真实的节点个数不匹配。<br><img src="https://pic.downk.cc/item/5f2ccafd14195aa594c30ea0.png" alt></p>
+<p>通过一系列的Debug，找到了问题，其原因是splice函数，在我的项目代码中写了这样的一个语句，</p>
+<pre><code>t2.splice(t2.begin(), t2_clean, it2-&gt;list_ptr);</code></pre><p>其中，t2和t2_clean一样也是std::list容器对象，splice函数的功能是将某个list对象（t2_clean）节点移动至另一个list对象（t2）的指定位置，其三个参数的意义分别是：</p>
+<ol>
+<li>指向调用splice函数list对象中某个节点的迭代器（t2.begin（）），将另一个对象插入到该迭代器前一个位置，在本语句中表示会将t2_clean对象的某个元素插入到t2的头节点前的一个位置。</li>
+<li>和3 表示想要移动的list对象t2_clean）以及指向该对象某个元素的迭代器（it2-&gt;list_ptr）</li>
+</ol>
+<p>splice函数如果遇见t2_clean是空的，此时继续执行splice函数会怎样？没错，该意外操作并不会报错，需要程序员自己控制该意外情况不发生，继续执行会导致t2的节点+1以及t2_clean的节点数目-1，但并不会真的有节点插入t2,此时对t2和t2_clean调用.size（）方法会发现，t2的size比实际它所存储的节点数目多1，而t2_clean的size比实际它所存储的节点数目少1。</p>
 
             </div>
             <hr />
@@ -644,9 +638,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《小站伊始》
+                    《STL list容器 .size()返回数值错误》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/12/06/xiao-zhan-yi-shi/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/07/stlsizeerror/" property="cc:attributionName"
                rel="cc:attributionURL">
                 pglprome
             </a> 采用
@@ -687,7 +681,7 @@
         repo: 'pglprome.github.io',
         owner: 'pglprome',
         admin: "pglprome",
-        id: '2019/12/06/xiao-zhan-yi-shi/',
+        id: '2020/08/07/stlsizeerror/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -970,92 +964,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/12/07/how-to-run-background/">
+                <a href="/2020/08/07/stlsizeerror/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="ssh断开后，程序如何继续在服务器后台运行">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="STL list容器 .size()返回数值错误">
                         
-                        <span class="card-title">ssh断开后，程序如何继续在服务器后台运行</span>
+                        <span class="card-title">STL list容器 .size()返回数值错误</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这两天在服务器上跑程序，因为实验室有人在服务器上跑了Gnome，我只能用ssh连接在上面跑程序。因为程序跑的时间比较久，中间ssh在闲置一段时间后会自动断开（ssh没有心跳检测），ssh断开后我们在服务器上跑的程序也就会停止，这就产生了困扰
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-07
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Linux/" class="post-category" target="_blank">
-                                    Linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Linux/" target="_blank">
-                        <span class="chip bg-color">Linux</span>
-                    </a>
-                    
-                    <a href="/tags/服务器/" target="_blank">
-                        <span class="chip bg-color">服务器</span>
-                    </a>
-                    
-                    <a href="/tags/shell命令/" target="_blank">
-                        <span class="chip bg-color">shell命令</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/12/06/xiao-zhan-yi-shi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="小站伊始">
-                        
-                        <span class="card-title">小站伊始</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            建站之初因为想要记录一些自己学过的东西和折腾的经历，故学着大佬们利用GitHub Pages来搭建一个自己的小博客。起初也是因为我通过别人的博客获得了一些帮助（如通过陈浩的博客获取了一些在disksim和flash sim使用上的帮助）故也
+                            前两天写缓存代码时，遇见了一个我认为是STL的bug，如图所示，t2_clean是我定义的一个std::list对象，通过IDE我们可以看到此时该容器中有两个节点，分别对应的下标是0和1，此时我们调用.size（）方法，理应获得的值是2，但
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C++
                                 </a>
                             
                             
@@ -1066,8 +1004,61 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/随笔/" target="_blank">
-                        <span class="chip bg-color">随笔</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/STL/" target="_blank">
+                        <span class="chip bg-color">STL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/08/05/cajtopdf/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="将CAJ文档转换成带书签的PDF">
+                        
+                        <span class="card-title">将CAJ文档转换成带书签的PDF</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            刚入门的科研工作者经常会阅读知网上的硕博论文，尤其是文科的童鞋们，理工科也可以从优秀的硕博中了解本行业的基础知识。但是知网的CAJ非常难用（就是LJ），pdf版本下载下来没有书签，故在此提供一个简单的方案，非常easy和快速，熟练的话也就一
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/科研工具/" class="post-category" target="_blank">
+                                    科研工具
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/科研工具/" target="_blank">
+                        <span class="chip bg-color">科研工具</span>
                     </a>
                     
                 </div>
