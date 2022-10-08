@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>pglprome的小站</title>
+  
+  <subtitle>Amadeus</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://pglprome.eu.org/"/>
+  <updated>2022-10-08T09:11:22.590Z</updated>
+  <id>https://pglprome.eu.org/</id>
+  
+  <author>
+    <name>pglprome</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android/Java 线程池笔记</title>
+    <link href="https://pglprome.eu.org/2022/10/08/android-thredpool/"/>
+    <id>https://pglprome.eu.org/2022/10/08/android-thredpool/</id>
+    <published>2022-10-08T08:54:29.000Z</published>
+    <updated>2022-10-08T09:11:22.590Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、为何要使用线程池&quot;&gt;&lt;a href=&quot;#一、为何要使用线程池&quot; class=&quot;headerlink&quot; title=&quot;一、为何要使用线程池&quot;&gt;&lt;/a&gt;一、为何要使用线程池&lt;/h1&gt;&lt;p&gt;在Java中，要使用多线程，除了使用new
+        
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="https://pglprome.eu.org/categories/Android/"/>
+    
+    
+      <category term="java" scheme="https://pglprome.eu.org/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>STL list容器 .size()返回数值错误</title>
+    <link href="https://pglprome.eu.org/2020/08/07/stlsizeerror/"/>
+    <id>https://pglprome.eu.org/2020/08/07/stlsizeerror/</id>
+    <published>2020-08-07T03:19:17.000Z</published>
+    <updated>2020-08-07T03:48:54.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前两天写缓存代码时，遇见了一个我认为是STL的bug，如图所示，t2_clean是我定义的一个std::list对象，通过IDE我们可以看到此时该容器中有两个节点，分别对应的下标是0和1，此时我们调用.size（）方法，理应获得的值是2，但这里获得的值是-1，通过多次调试，
+        
+      
+    
+    </summary>
+    
+      <category term="C++" scheme="https://pglprome.eu.org/categories/C/"/>
+    
+    
+      <category term="C++" scheme="https://pglprome.eu.org/tags/C/"/>
+    
+      <category term="STL" scheme="https://pglprome.eu.org/tags/STL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>将CAJ文档转换成带书签的PDF</title>
+    <link href="https://pglprome.eu.org/2020/08/05/cajtopdf/"/>
+    <id>https://pglprome.eu.org/2020/08/05/cajtopdf/</id>
+    <published>2020-08-05T13:06:03.000Z</published>
+    <updated>2020-08-07T02:55:46.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;刚入门的科研工作者经常会阅读知网上的硕博论文，尤其是文科的童鞋们，理工科也可以从优秀的硕博中了解本行业的基础知识。&lt;br&gt;但是知网的CAJ非常难用（就是LJ），pdf版本下载下来没有书签，故在此提供一个简单的方案，非常easy和快速，熟练的话也就一两分钟。&lt;/p&gt;
+&lt;p&gt;首
+        
+      
+    
+    </summary>
+    
+      <category term="科研工具" scheme="https://pglprome.eu.org/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="科研工具" scheme="https://pglprome.eu.org/tags/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ssh断开后，程序如何继续在服务器后台运行</title>
+    <link href="https://pglprome.eu.org/2019/12/07/how-to-run-background/"/>
+    <id>https://pglprome.eu.org/2019/12/07/how-to-run-background/</id>
+    <published>2019-12-07T13:49:31.000Z</published>
+    <updated>2019-12-07T14:32:41.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这两天在服务器上跑程序，因为实验室有人在服务器上跑了Gnome，我只能用ssh连接在上面跑程序。因为程序跑的时间比较久，中间ssh在闲置一段时间后会自动断开（ssh没有心跳检测），ssh断开后我们在服务器上跑的程序也就会停止，这就产生了困扰。&lt;/p&gt;
+&lt;p&gt;简单在Googl
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://pglprome.eu.org/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://pglprome.eu.org/tags/Linux/"/>
+    
+      <category term="服务器" scheme="https://pglprome.eu.org/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="shell命令" scheme="https://pglprome.eu.org/tags/shell%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小站伊始</title>
+    <link href="https://pglprome.eu.org/2019/12/06/xiao-zhan-yi-shi/"/>
+    <id>https://pglprome.eu.org/2019/12/06/xiao-zhan-yi-shi/</id>
+    <published>2019-12-06T12:52:52.000Z</published>
+    <updated>2019-12-06T13:45:59.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;建站之初&quot;&gt;&lt;a href=&quot;#建站之初&quot; class=&quot;headerlink&quot; title=&quot;建站之初&quot;&gt;&lt;/a&gt;建站之初&lt;/h1&gt;&lt;p&gt;因为想要记录一些自己学过的东西和折腾的经历，故学着大佬们利用GitHub
+        
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://pglprome.eu.org/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://pglprome.eu.org/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>

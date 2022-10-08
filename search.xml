@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Android/Java 线程池笔记</title>
+      <link href="/2022/10/08/android-thredpool/"/>
+      <url>/2022/10/08/android-thredpool/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、为何要使用线程池"><a href="#一、为何要使用线程池" class="headerlink" title="一、为何要使用线程池"></a>一、为何要使用线程池</h1><p>在Java中，要使用多线程，除了使用new Thread()之外，还可以使用线程池ExecutorService。</p><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 使用Thread</span>Thread t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token annotation punctuation">@Override</span>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">// ...</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>t<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 使用线程池</span>ExecutorService es <span class="token operator">=</span> Executors<span class="token punctuation">.</span><span class="token function">newSingleThreadExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>es<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token annotation punctuation">@Override</span>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">// ...</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>线程池主要解决了两个问题：</p><ol><li>频繁创建销毁线程的开销</li><li>任务的管理</li></ol><p>在异步任务比较多时，创建、销毁线程会占用很多系统资源；这时候，使用线程池，就可以实现线程的复用，让人专注于任务的实现，而不是管理线程。</p><h1 id="二、线程池简介"><a href="#二、线程池简介" class="headerlink" title="二、线程池简介"></a>二、线程池简介</h1><h2 id="1-什么是线程池"><a href="#1-什么是线程池" class="headerlink" title="1. 什么是线程池"></a>1. 什么是线程池</h2><p>线程池（本文特指ThreadPoolExecutor类）顾名思义，就是一个装了线程的池子。线程池创建和管理若干线程，在需要使用的时候可以直接从线程池中取出来使用，在任务结束之后闲置等待复用，或者销毁。<br>线程池中的线程分为两种：核心线程和普通线程。核心线程即线程池中长期存活的线程，即使闲置下来也不会被销毁，需要使用的时候可以直接拿来用。而普通线程则有一定的寿命，如果闲置时间超过寿命，则这个线程就会被销毁。</p><p>查看ThreadPoolExecutor类的其中一个典型的构造方法：</p><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token keyword">int</span> corePoolSize<span class="token punctuation">,</span>                              <span class="token keyword">int</span> maximumPoolSize<span class="token punctuation">,</span>                              <span class="token keyword">long</span> keepAliveTime<span class="token punctuation">,</span>                              TimeUnit unit<span class="token punctuation">,</span>                              BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">this</span><span class="token punctuation">(</span>corePoolSize<span class="token punctuation">,</span> maximumPoolSize<span class="token punctuation">,</span> keepAliveTime<span class="token punctuation">,</span> unit<span class="token punctuation">,</span> workQueue<span class="token punctuation">,</span>             Executors<span class="token punctuation">.</span><span class="token function">defaultThreadFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> defaultHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>线程池的具体行为和几个参数有关：</p><ul><li>核心数 corePoolSize<br>线程池中核心线程的数量。</li><li>最大容量 maximumPoolSize<br>线程池最大允许保留多少线程。</li><li>超时时间 keepAliveTime<br>线程池中普通线程的存活时间。</li></ul><h2 id="2-线程池的使用"><a href="#2-线程池的使用" class="headerlink" title="2. 线程池的使用"></a>2. 线程池的使用</h2><p>线程池的一般使用步骤如下：</p><p>使用Executors中的工厂方法来获取ExecutorService实例；<br>使用ExecutorService的execute(runnable)或者submit(runnable)方法来添加任务。</p><pre class="line-numbers language-java"><code class="language-java">ExecutorService es <span class="token operator">=</span> Executors<span class="token punctuation">.</span><span class="token function">newSingleThreadExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    es<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token annotation punctuation">@Override</span>        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            String response <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpUtil</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"http://littlefogcat.top"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="3-线程池的分类"><a href="#3-线程池的分类" class="headerlink" title="3. 线程池的分类"></a>3. 线程池的分类</h2><p>在Executors工厂类中提供了多种线程池，典型的有以下四种：</p><h3 id="1-SingleThreadExecutor-单线程线程池"><a href="#1-SingleThreadExecutor-单线程线程池" class="headerlink" title="1. SingleThreadExecutor 单线程线程池"></a>1. SingleThreadExecutor 单线程线程池</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ExecutorService <span class="token function">newSingleThreadExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">FinalizableDelegatedExecutorService</span>            <span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span>                     0L<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>MILLISECONDS<span class="token punctuation">,</span>                     <span class="token keyword">new</span> <span class="token class-name">LinkedBlockingQueue</span><span class="token operator">&lt;</span>Runnable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>核心线程数为1，最大线程数为1，也就是说SingleThreadExecutor这个线程池中的线程数固定为1。使用场景：当多个任务都需要访问同一个资源的时候。</p><h3 id="2-FixedThreadPool-固定容量线程池"><a href="#2-FixedThreadPool-固定容量线程池" class="headerlink" title="2. FixedThreadPool 固定容量线程池"></a>2. FixedThreadPool 固定容量线程池</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ExecutorService <span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token keyword">int</span> nThreads<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span>nThreads<span class="token punctuation">,</span> nThreads<span class="token punctuation">,</span>                                      0L<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>MILLISECONDS<span class="token punctuation">,</span>                                      <span class="token keyword">new</span> <span class="token class-name">LinkedBlockingQueue</span><span class="token operator">&lt;</span>Runnable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>核心线程数为n，最大线程数为n。使用场景：明确同时执行任务数量时。</p><h3 id="3-CachedThreadPool-缓存线程池"><a href="#3-CachedThreadPool-缓存线程池" class="headerlink" title="3. CachedThreadPool 缓存线程池"></a>3. CachedThreadPool 缓存线程池</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ExecutorService <span class="token function">newCachedThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">,</span>                                      60L<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">,</span>                                      <span class="token keyword">new</span> <span class="token class-name">SynchronousQueue</span><span class="token operator">&lt;</span>Runnable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>核心线程数为0，最大线程数无上限，线程超时时间60秒。使用场景：处理大量耗时较短的任务。</p><h3 id="4-ScheduledThreadPool-定时线程池"><a href="#4-ScheduledThreadPool-定时线程池" class="headerlink" title="4. ScheduledThreadPool 定时线程池"></a>4. ScheduledThreadPool 定时线程池</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ScheduledExecutorService <span class="token function">newScheduledThreadPool</span><span class="token punctuation">(</span><span class="token keyword">int</span> corePoolSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ScheduledThreadPoolExecutor</span><span class="token punctuation">(</span>corePoolSize<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token comment" spellcheck="true">/*    public ScheduledThreadPoolExecutor(int corePoolSize) {        super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,              new DelayedWorkQueue());    }*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>核心线程数自定，最大线程数无上限。使用场景：处理延时任务。</p><p>可以看到，这四个方法都返回了一个ThreadPoolExecutor对象（ScheduledThreadPoolExecutor是其子类），仅仅是其中的参数略有不同。所以接下来就对ThreadPoolExecutor类进行解析。</p><p>参考:<br><a href="https://zhuanlan.zhihu.com/p/143484740" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/143484740</a><br><a href="https://blog.csdn.net/SEU_Calvin/article/details/52415337" target="_blank" rel="noopener">https://blog.csdn.net/SEU_Calvin/article/details/52415337</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>STL list容器 .size()返回数值错误</title>
+      <link href="/2020/08/07/stlsizeerror/"/>
+      <url>/2020/08/07/stlsizeerror/</url>
+      
+        <content type="html"><![CDATA[<p>前两天写缓存代码时，遇见了一个我认为是STL的bug，如图所示，t2_clean是我定义的一个std::list对象，通过IDE我们可以看到此时该容器中有两个节点，分别对应的下标是0和1，此时我们调用.size（）方法，理应获得的值是2，但这里获得的值是-1，通过多次调试，每次返回值是不同的，但总之是，.size（）返回的值和容器中真实的节点个数不匹配。<br><img src="https://pic.downk.cc/item/5f2ccafd14195aa594c30ea0.png" alt></p><p>通过一系列的Debug，找到了问题，其原因是splice函数，在我的项目代码中写了这样的一个语句，</p><pre><code>t2.splice(t2.begin(), t2_clean, it2-&gt;list_ptr);</code></pre><p>其中，t2和t2_clean一样也是std::list容器对象，splice函数的功能是将某个list对象（t2_clean）节点移动至另一个list对象（t2）的指定位置，其三个参数的意义分别是：</p><ol><li>指向调用splice函数list对象中某个节点的迭代器（t2.begin（）），将另一个对象插入到该迭代器前一个位置，在本语句中表示会将t2_clean对象的某个元素插入到t2的头节点前的一个位置。</li><li>和3 表示想要移动的list对象t2_clean）以及指向该对象某个元素的迭代器（it2-&gt;list_ptr）</li></ol><p>splice函数如果遇见t2_clean是空的，此时继续执行splice函数会怎样？没错，该意外操作并不会报错，需要程序员自己控制该意外情况不发生，继续执行会导致t2的节点+1以及t2_clean的节点数目-1，但并不会真的有节点插入t2,此时对t2和t2_clean调用.size（）方法会发现，t2的size比实际它所存储的节点数目多1，而t2_clean的size比实际它所存储的节点数目少1。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> STL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>将CAJ文档转换成带书签的PDF</title>
+      <link href="/2020/08/05/cajtopdf/"/>
+      <url>/2020/08/05/cajtopdf/</url>
+      
+        <content type="html"><![CDATA[<p>刚入门的科研工作者经常会阅读知网上的硕博论文，尤其是文科的童鞋们，理工科也可以从优秀的硕博中了解本行业的基础知识。<br>但是知网的CAJ非常难用（就是LJ），pdf版本下载下来没有书签，故在此提供一个简单的方案，非常easy和快速，熟练的话也就一两分钟。</p><p>首先，你得有一个女票让你帮她给她想看的论文加标签，现在开始<br><strong>第一步</strong>，通过知网下载对应论文的pdf版本，部分论文可能没有pdf的下载选项，网上大多数方法是采用虚拟打印，但这样的话，对应的文字是无法选中的，需要用OCR去识别，且识别率不高，这里建议下载对应油猴插件，可以很easy解决该问题，不多赘述。<br><img src="https://pic.downk.cc/item/5f2ab15d14195aa594014f4d.png" alt></p><p><strong>第二步</strong>，我们通过 <strong>分章下载</strong> 按钮获得对应文献的参考目录，然后将其复制到word中，记得粘贴的时候不要将格式粘贴进去，选择只保留文本<br><img src="https://pic.downk.cc/item/5f2ab29a14195aa594020bbd.png" alt><br><img src="https://pic.downk.cc/item/5f2ab29a14195aa594020bc4.png" alt></p><p><strong>第三步</strong>， 通过“开发”进入“Visual Basic”（word中的快捷键是alt + F11），右键thisDocument，“导入文件”，导入“知网书签.bas”，点击运行，确认即可。<br><img src="https://pic.downk.cc/item/5f2ab42a14195aa59402f2d3.png" alt><br><img src="https://pic.downk.cc/item/5f2ab42a14195aa59402f2d5.png" alt><br><img src="https://pic.downk.cc/item/5f2ab51d14195aa594037885.png" alt></p><p><strong>第四步</strong>， 运行 FreePic2Pdf.exe，选择右下角的更改pdf ， 切换至从PDF取书签标签页，选取对应的 PDF 文件，并进行书签提取<br><img src="https://pic.downk.cc/item/5f2ab72514195aa594049018.png" alt><br><img src="https://pic.downk.cc/item/5f2ab72514195aa59404901a.png" alt></p><p><strong>第五步</strong>，切换至 往PDF挂书签标签页，点击编辑书签，清空编辑框，将第二步生成的书签文本复制到此，并保存。在往PDF挂书签标签页点击开始进行挂书签，将原有 PDF 转换成带有书签的 PDF。注意此步骤需要将 PDF 文件关闭，避免读取出错。</p><p><img src="https://pic.downk.cc/item/5f2ab86d14195aa59405434f.png" alt><br><img src="https://pic.downk.cc/item/5f2ab86d14195aa594054351.png" alt><br><img src="https://pic.downk.cc/item/5f2ab86d14195aa594054355.png" alt></p><p><strong>第六步</strong>，完成，可以向女票交差了<br><img src="https://pic.downk.cc/item/5f2ab86d14195aa594054357.png" alt></p><h3 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h3><p>本文使用到的所有工具<br><a href="https://drive.google.com/file/d/1gBbdXu7kTb9caMpuGheFYFPdSMLVdXpV/view?usp=sharing" target="_blank" rel="noopener">谷歌云</a><br><strong>百度云</strong>：链接：<a href="https://pan.baidu.com/s/1DEOtj1jIup3oULIVJEpInw" target="_blank" rel="noopener">https://pan.baidu.com/s/1DEOtj1jIup3oULIVJEpInw</a><br>提取码：afwb</p><p>本文方法转自<br><a href="http://blog.sina.com.cn/s/blog_d1ebd8ae0102wejz.html" target="_blank" rel="noopener">将CAJ文件转换为带书签的pdf的方法</a><br>和<a href="https://shenxiaohai.me/2018/03/15/caj-to-pdf/" target="_blank" rel="noopener">如何将 CAJ 文档转换成带书签的 PDF</a><br>这两个博客分别遇到内容被隐藏以及下载链接失效的问题，故在此分享一下该方法给年轻的科研工作者</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 科研工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 科研工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ssh断开后，程序如何继续在服务器后台运行</title>
+      <link href="/2019/12/07/how-to-run-background/"/>
+      <url>/2019/12/07/how-to-run-background/</url>
+      
+        <content type="html"><![CDATA[<p>这两天在服务器上跑程序，因为实验室有人在服务器上跑了Gnome，我只能用ssh连接在上面跑程序。因为程序跑的时间比较久，中间ssh在闲置一段时间后会自动断开（ssh没有心跳检测），ssh断开后我们在服务器上跑的程序也就会停止，这就产生了困扰。</p><p>简单在Google搜了下，解决方法有以下三种</p><ol><li><strong>nohup指令</strong></li><li><strong>screen指令</strong></li><li><strong>byobu指令</strong></li></ol><p>其中，nohun指令是大多数Linux发行版自带的，不用刻意安装，screen会在当前命令行界面再开一个窗口，我们可以在任何命令行界面打开这个窗口，这样，当前命令行关闭后，我们运行的程序也就不会被动关闭。byobu是screen的升级版（网上是这样说的）</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul><li>通过对几个命令的实验，我感觉<strong>byobu是最好用</strong>也是最方便的，下面简单介绍一下。</li></ul><p>首先，我们要安装byobu，红帽系用yum安装，debian用apt get，因为我的服务器是ubuntu，故我采用的命令是</p><pre><code>sudo apt install byobu</code></pre><p>安装好byobu后，我们在命令行输入就能打开byobu，如图<br><img src="1.jpg" alt></p><h3 id="byobu的基本简单操作"><a href="#byobu的基本简单操作" class="headerlink" title="byobu的基本简单操作"></a>byobu的基本简单操作</h3><table><thead><tr><th>按键</th><th align="center">说明</th></tr></thead><tbody><tr><td>F2</td><td align="center">新建窗口</td></tr><tr><td>F3</td><td align="center">移动到前一个窗口</td></tr><tr><td>F6</td><td align="center">退出byobu窗口</td></tr><tr><td>F9</td><td align="center">打开byobu菜单，查看帮助信息的配置信息</td></tr><tr><td>Ctrl+D</td><td align="center">关闭当前窗口</td></tr></tbody></table><p>如果我们想要一登陆就显示byobu界面的话，可以使用命令</p><pre><code>byobu-enable</code></pre><p>关闭使用的命令是</p><pre><code>byobu-disable</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> shell命令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小站伊始</title>
+      <link href="/2019/12/06/xiao-zhan-yi-shi/"/>
+      <url>/2019/12/06/xiao-zhan-yi-shi/</url>
+      
+        <content type="html"><![CDATA[<h1 id="建站之初"><a href="#建站之初" class="headerlink" title="建站之初"></a>建站之初</h1><p>因为想要记录一些自己学过的东西和折腾的经历，故学着大佬们利用GitHub Pages来搭建一个自己的小博客。起初也是因为我通过别人的博客获得了一些帮助（如通过<a href="http://cighao.com" target="_blank" rel="noopener">陈浩的博客</a>获取了一些在disksim和flash sim使用上的帮助）故也希望自己折腾的一些经历能够帮助别人。</p><h2 id="博客计划分享的内容"><a href="#博客计划分享的内容" class="headerlink" title="博客计划分享的内容"></a>博客计划分享的内容</h2><ul><li><p><strong>研究内容</strong></p><p>我目前正在读CS体系结构的master’s degree，研究方向是NAND Flash存储系统和 KV存储系统优化，可能会分享一些这个研究方向的内容以及开源代码，比如MQsim的代码，我的部分实验时基于这个SSD模拟器做的，其实CMU 2018年发布在Fast上的论文，并在GitHub上开源，可以说是目前最先进的SSD模拟器，其代码量相对较大，且参考资料不多，中文资料截止目前网上还一点没有，我可能会在之后分享一些相关资料。其它的比如 Leveldb，ms ssdmodel等，网上已经有不少相关资料，我也可能会分享一些自己的理解。</p></li><li><p><strong>算法，数据结构，Coding中的问题等</strong></p><p>在写代码的过程中，经常会遇见一些好的idea，有趣的算法或者debug时遇见一些难解决的问等。我可能会记录下来，一是为了帮助自己整理和记忆，其次是希望能帮到其他遇见这个问题的人。</p></li><li><p><strong>数码产品的折腾，NAS，路由等</strong></p><p>我本身喜欢捣鼓一些电子产品，一个是能够改善某些使用体验，使其个性化，其次是我也享受实现功能（折腾）的过程，我目前个人买了一台群晖DS918+，可能会分享Nas,路由，安卓，树莓派，服务器以及一些智能家居的折腾经历。</p></li></ul><p><img src="1.jpg" alt></p><h2 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h2><p>本博客使用的是Hexo框架，并采用<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">hexo-theme-matery主题</a>，目前搭建在GitHub Pages上面，原本计划搭建在国内的平台上，如Coding和码云，不过都有限制，Coding有单个仓库不大于100MB的限制，码云有不能修改域名的限制，故最后还是选择GitHub了</p><div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=4970212&auto=1&height=66"></iframe></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
