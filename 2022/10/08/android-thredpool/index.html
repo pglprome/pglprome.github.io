@@ -448,14 +448,14 @@ Thread t = new Thread(new Runnable() {
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    858
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    5 分
                 </div>
                 
                 
@@ -554,7 +554,9 @@ es<span class="token punctuation">.</span><span class="token function">execute</
 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>核心线程数自定，最大线程数无上限。使用场景：处理延时任务。</p>
 <p>可以看到，这四个方法都返回了一个ThreadPoolExecutor对象（ScheduledThreadPoolExecutor是其子类），仅仅是其中的参数略有不同。所以接下来就对ThreadPoolExecutor类进行解析。</p>
-<p>参考:<br><a href="https://zhuanlan.zhihu.com/p/143484740" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/143484740</a><br><a href="https://blog.csdn.net/SEU_Calvin/article/details/52415337" target="_blank" rel="noopener">https://blog.csdn.net/SEU_Calvin/article/details/52415337</a></p>
+<h2 id="4-ExecutorService-submit-与Executor-execute-两个方法的相同与不同之处"><a href="#4-ExecutorService-submit-与Executor-execute-两个方法的相同与不同之处" class="headerlink" title="4. ExecutorService.submit()与Executor.execute() 两个方法的相同与不同之处"></a>4. ExecutorService.submit()与Executor.execute() 两个方法的相同与不同之处</h2><h3 id="相同之处："><a href="#相同之处：" class="headerlink" title="相同之处："></a>相同之处：</h3><p>Both submit() and execute() methods are used to submit a task to Executor framework for asynchronous execution.<br>submit和execute方法均可以想线程池中提交一个任务，让线程池来异步执行这个任务<br>Both submit() and execute() can accept a Runnable task.<br>两个方法均可以接受Runnable类型的任务<br>You can access submit() and execute() from the ExecutorService interface because it also extends the Executor interface which declares the execute() method.<br>从ExecutorService接口中均可以调用submit和execute方法，但是submit方法是在ExecutorService接口中定义的，而execute方法是在Executor接口中定义的</p>
+<h3 id="不同之处："><a href="#不同之处：" class="headerlink" title="不同之处："></a>不同之处：</h3><p>The submit() can accept both Runnable and Callable task but execute() can only accept the Runnable task.<br>submit方法既能接受有返回结果Callable类型和没有返回结果的Runnable类型，而execute方法只能结构没有返回结果的Runnable类型<br>The submit() method is declared in ExecutorService interface while execute() method is declared in the Executor interface.<br>submit方法是定义在ExecutorService接口中的，而execute方法是定义在Executor接口中的<br>The return type of submit() method is a Future object but return type of execute() method is void.<br>submit方法的返回值是一个Future，而execute方法的返回值是void<br>对于异常的处理<br>使用submit方式提交的任务若在执行的过程中抛出了异常的话，异常信息会被吃掉（在控制台中看不到），需要通过Future.get方法来获取这个异常；使用execute方式提交的任务若在执行的过程中出现异常的话，异常信息会被打印到控制台</p>
+<p>参考:<br><a href="https://zhuanlan.zhihu.com/p/143484740" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/143484740</a><br><a href="https://www.imangodoc.com/178483.html" target="_blank" rel="noopener">https://www.imangodoc.com/178483.html</a></p>
 
             </div>
             <hr />
@@ -1298,7 +1300,7 @@ Thread t = new Thread(new Runnable() {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">2.9k</span>
+            <span class="white-color">3.3k</span>
             
 
             <br>
