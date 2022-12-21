@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pglprome.eu.org/"/>
-  <updated>2022-10-09T07:46:06.000Z</updated>
+  <updated>2022-12-21T03:23:57.907Z</updated>
   <id>https://pglprome.eu.org/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>POSIX 定时器_QNX实现</title>
+    <link href="https://pglprome.eu.org/2022/12/21/posix-timer/"/>
+    <id>https://pglprome.eu.org/2022/12/21/posix-timer/</id>
+    <published>2022-12-21T02:45:27.000Z</published>
+    <updated>2022-12-21T03:23:57.907Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、POSXI接口定时器-QNX实现&quot;&gt;&lt;a href=&quot;#一、POSXI接口定时器-QNX实现&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Android/Java 线程池笔记</title>
