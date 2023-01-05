@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pglprome.eu.org/"/>
-  <updated>2023-01-05T15:51:28.634Z</updated>
+  <updated>2023-01-05T15:53:05.612Z</updated>
   <id>https://pglprome.eu.org/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>TCP Unix 网络抓包分析 示例</title>
+    <title>TCP Posix 网络抓包分析 示例</title>
     <link href="https://pglprome.eu.org/2023/01/05/tcpdump/"/>
     <id>https://pglprome.eu.org/2023/01/05/tcpdump/</id>
     <published>2023-01-05T11:29:35.000Z</published>
-    <updated>2023-01-05T15:51:28.634Z</updated>
+    <updated>2023-01-05T15:53:05.612Z</updated>
     
     <summary type="html">
     
