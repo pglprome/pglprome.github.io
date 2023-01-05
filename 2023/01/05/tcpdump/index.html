@@ -643,7 +643,7 @@ TCP的连接建立和连接关闭，都是通过请求－响应的模式完成�
 <p>可以看出，报文是由两部分组成，第一部分是buf_header，第二部分是序列化后的payload。</p>
 <p>buf_header是由8 bytes组成（uint8_t buf_header[8]），messageId是一个五位数的十进制整数，最大不超过2^17。</p>
 <p>buf_header[0]是messageId二进制的0-7位（0xFF即 1111 1111）。<br>buf_header[1]是messageId二进制的8-15位。<br>buf_header[2]是messageId二进制的16-23位。<br>buf_header[3]是messageId二进制的24-31位。</p>
-<p>分析到这里就比较简单了，我查了我想抓的报文的messageId是57275<br>转换成十六进制是0xDFBB,二进制为1101 1111 1011 1011。(注: 一位十六进制是2^4, 即四位二进制，故四位二进制正好表达一位十六进制)</p>
+<p>分析到这里就比较简单了，我查了我想抓的报文的messageId是57275<br>转换成十六进制是0xDFBB,二进制为1101 1111 1011 1011。<br>(注: 一位十六进制是2^4, 即四位二进制，故四位二进制正好表达一位十六进制)</p>
 <p>故这个messageId总共只有16位二进制，故buf_header[0]为BB，buf_header[1]为DF，故buf_header[2]和buf_header[3]均为0.</p>
 <p>我们只要找到报文的data开头是BB DF 00 00 的报文，即是我们需要的报文。<br>到这一步，就很轻易的找到了</p>
 <p>如下图所示，即为我们需要找的报文<br><img src="https://pic.imgdb.cn/item/63b6f0b3be43e0d30eb0fb93.jpg" alt></p>
